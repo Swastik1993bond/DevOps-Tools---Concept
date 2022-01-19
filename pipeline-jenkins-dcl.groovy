@@ -1,5 +1,8 @@
 pipeline{
-    agent any{
+    agent any
+    tools{
+        maven 'Maven 3.3.9'
+        jdk 'jdk 8' }
         stages{
             stage('Checkout stage'){
                 steps{
@@ -7,11 +10,11 @@ pipeline{
                 }
             stage('Build stage'){
                 steps{
-                    mvn clean package 
+                    sh 'mvn -Dmaven.test.failure.ignore=true install'
                 }
-            stage('test Stage'){
+            stage('Test Stage'){
                 steps{
-                   junit 'myproject/target/test-reports/Reports.xml' 
+                   junit 'myproject/target/test-reports/*.xml' 
                 }
             stage('Deploy stage'){
                 steps{
