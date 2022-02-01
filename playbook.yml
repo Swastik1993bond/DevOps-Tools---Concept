@@ -4,13 +4,7 @@
   become: yes
   become_user: web_admin
   tasks:
-      - name: Create path for Apache
-        shell: 
-          cmd: /apache2
-
       - name: Install Apache2 in the server
-        shell: 
-          cmd: apache2
         yum:
           service: httpd
           state: present
