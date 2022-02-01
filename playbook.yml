@@ -1,0 +1,23 @@
+---
+  name: Install & Start Apache2, The Reboot server
+  hosts: Webserver
+  become: yes
+  become_user: web_admin
+  tasks:
+      - name: Create path for Apache
+        ansible.builtin.shell: 
+          cmd: /apache2
+      - name: Install Apache2 in the server
+        ansible.builtin.shell: 
+          cmd: apache2
+        yum:
+          service: httpd
+          state: present
+      - name: Start Apache2 in server
+        ansible.builtin.shell:
+            service: httpd
+            state: started
+      - name: Restart server
+        ansible.builtin.shell: reboot
+
+
