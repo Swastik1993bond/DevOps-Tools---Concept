@@ -1,0 +1,19 @@
+---
+  name: Install & Restart Nginx
+  hosts: Webserver
+  gather_facts: no
+  vars:
+    - server_port: 8080
+  become: yes
+  become_user: webadmin
+  tasks:
+   - name: install nginx
+     apt: pkg=nginx state=installed update_cache=true
+     notify:
+     - restart nginx
+    
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=started
+
+     
