@@ -5,19 +5,37 @@
   become_user: web_admin
   tasks:
       - name: Create path for Apache
-        ansible.builtin.shell: 
+        shell: 
           cmd: /apache2
+
       - name: Install Apache2 in the server
-        ansible.builtin.shell: 
+        shell: 
           cmd: apache2
         yum:
           service: httpd
           state: present
+
       - name: Start Apache2 in server
-        ansible.builtin.shell:
+        shell:
             service: httpd
             state: started
+
       - name: Restart server
-        ansible.builtin.shell: reboot
+        shell: reboot
+
+      - name: Wait for the machine to come back online
+        wait_for_connection:
+            connect_timeout: 60
+            sleep: 5
+            delay: 5
+            timeout: 300
+        notify:
+        - Start apache
+
+  handlers:
+    - name: Start apache
+      ansible.builtin.service:
+        name: httpd
+        state: started
 
 
