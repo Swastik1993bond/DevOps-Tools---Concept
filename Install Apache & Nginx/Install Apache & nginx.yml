@@ -1,0 +1,8 @@
+---
+  name: Install & Start Apache2, The Reboot server
+  hosts: Webserver
+  become: yes
+  become_user: web_admin
+  roles: 
+    - setup_apache&nginx
+

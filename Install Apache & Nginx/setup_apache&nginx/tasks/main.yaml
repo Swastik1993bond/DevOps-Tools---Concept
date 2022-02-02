@@ -1,0 +1,27 @@
+- name: Install Apache2 in the server
+    yum:
+      service: httpd
+      state: present
+      when: ansible_os_family == "RedHat"
+  notify:
+    - Reboot Server
+    - Start apache
+
+- name: Install Nginx in the server
+    apt:
+      service: nginx
+      state: present
+      when: ansible_os_family == "Debian"
+  notify:
+    - Reboot Server
+    - Start nginx
+
+- name: Wait for the machine to come back online
+    wait_for_connection:
+    connect_timeout: 60
+    sleep: 5
+    delay: 5
+    timeout: 300
+  notify:
+    - Start apache
+    - Start nginx
