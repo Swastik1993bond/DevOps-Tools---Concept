@@ -2,7 +2,7 @@ pipeline{
     agent any
     tools{
         maven 'Maven 3.3.9'
-        jdk 'jdk 8'
+        jdk 'jdk 11'
         sonarqube 'My SonarQube Server' }
         stages{
             stage('Checkout stage'){
