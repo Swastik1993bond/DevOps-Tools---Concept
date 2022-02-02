@@ -1,0 +1,37 @@
+- name: Install httpd package
+  yum:
+    name: httpd
+    state: installed
+  when: ansible_os_family == "RedHat"
+  notify: start apache
+
+- name: Install apache2
+  apt:
+    name: apache2
+    state: present
+  when: ansible_os_family == "Debian"
+  notify: start apache2
+
+- name: Copy index.html
+  copy:
+    src: /home/ansadmin/ansible/apache/files/index.html
+    dest: /var/www/html
+    mode: 0666
+
+- name: Ensure the default Apache port is {{ port }}
+  lineinfile:
+    path: /etc/httpd/conf/httpd.conf
+    regexp: '^Listen '
+    insertafter: '^#Listen '
+    line: Listen {{ port }}
+  when: ansible_os_family == "RedHat"
+  notify: restart apache
+
+- name: Ensure the default Apache port is {{ port }} on ubuntu
+  lineinfile:
+    path: /etc/apache2/ports.conf
+    regexp: '^Listen '
+    insertafter: "# /etc/apache2/sites-enabled/000-default.conf"
+    line: Listen {{ port }}
+  when: ansible_os_family == "Debian"
+  notify: restart apache2
