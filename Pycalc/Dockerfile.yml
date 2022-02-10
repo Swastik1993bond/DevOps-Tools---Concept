@@ -1,0 +1,5 @@
+FROM python:3
+WORKDIR /pyapp
+COPY /python_app.py .
+RUN pip install pystrich
+CMD [ "python", "./my_script.py" ]

@@ -1,0 +1,14 @@
+version: '3.1'
+services:
+  Py_calc:
+    image: Pycalc
+    restart: always
+    ports: 
+      - 80:80
+    
+  
+    
+
+
+# to stop all the running coatiner : docker stop $(docker ps)
+# to remove all the conatiners : docker rm $(docker ps -a)
