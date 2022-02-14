@@ -1,6 +1,9 @@
 #!/bin/bash
+echo "............Creating New Docker network ......................"
 docker network create jenkins
+echo "............Building New Docker Image........................"
 docker build -t myjenkins-blueocean:2.319.3-1 .
+echo "............Running Docker conatiner with parameters.............................."
 docker run \
   --name jenkins-blueocean \
   --rm \
