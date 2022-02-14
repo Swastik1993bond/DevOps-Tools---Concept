@@ -1,3 +1,11 @@
+How to run the coantainer:
+
+keep this files in your local/server and run the shell script:
+
+sh jenkins-Docker.sh
+
+This will setup the image and create the container in port 8080 and 50000 for controller
+
 Accessing the Docker container
 If you have some experience with Docker and you wish or need to access your Docker container through a terminal/command prompt using the docker exec command, you can add an option like --name jenkins-tutorial to the docker exec command. That will access the Jenkins Docker container named "jenkins-tutorial".
 This means you could access your docker container (through a separate terminal/command prompt window) with a docker exec command like:
