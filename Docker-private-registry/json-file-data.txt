@@ -1,0 +1,6 @@
+
+#This file will be under /etc/docker/daemon.json
+--------------------------------------------------------------
+{
+     "insecure-registries":["<server-url>:5000"]
+}
