@@ -30,6 +30,4 @@ pipeline{
             failure {
                emailext body: 'Pipleline Failed', subject: 'failure-Pipeline', to: 'swastik.mukherzee@outlook.com'
         }
-        }
-    }
-}
+            }
