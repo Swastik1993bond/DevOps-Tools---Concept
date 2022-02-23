@@ -28,7 +28,7 @@ pipeline{
                    sh '''cp *.jar /var/www/html/'''
                 }
             failure {
-            mail to: swastik.mukherzee@outlook.com, subject: 'The Pipeline failed :( '
+                mail to: swastik.mukherzee@outlook.com, subject: 'The Pipeline failed :( )}'
         }
             }
             }
