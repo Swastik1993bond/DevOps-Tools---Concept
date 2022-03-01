@@ -28,13 +28,6 @@ pipeline{
                    sh '''cp *.jar /var/www/html/'''
                 }
             failure {
-            mail to: swastik.mukherzee@outlook.com, subject: 'The Pipeline failed :( '
+               emailext body: 'Pipleline Failed', subject: 'failure-Pipeline', to: 'swastik.mukherzee@outlook.com'
         }
             }
-            }
-            }
-            }
-            }
-        }
-    }
-}
